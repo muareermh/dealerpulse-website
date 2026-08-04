@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealerPulse - نبض وكالتك، لحظة بلحظة</title>
+<meta name="description" content="DealerPulse منصة الذكاء التشغيلي لوكلاء وموزعي السيارات في السعودية: المبيعات والصيانة وقطع الغيار والولاء والشكاوى في شاشة واحدة حية.">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%230f172a"/><stop offset="1" stop-color="%231d4ed8"/></linearGradient></defs><rect width="240" height="240" rx="54" fill="url(%23g)"/><path d="M34 152 H82 l18 -30 l24 52 l20 -84 l18 26 h24" stroke="white" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0f172a; --navy8:#1e293b; --blue7:#1d4ed8; --blue6:#2563eb; --blue5:#3b82f6;
+    --blue4:#60a5fa; --blue3:#93c5fd; --blue1:#dbeafe; --blue05:#eff6ff;
+    --slate7:#334155; --slate6:#475569; --slate5:#64748b; --slate2:#e2e8f0; --slate1:#f1f5f9; --slate05:#f8fafc;
+    --good:#15803d; --teal:#0d9488; --amber:#d97706; --red:#dc2626;
+    --shadow-card:0 3px 10px rgba(15,23,42,0.05);
+    --shadow-hover:0 10px 22px rgba(15,23,42,0.13);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'IBM Plex Sans Arabic',sans-serif; color:var(--slate7); background:#fff; line-height:1.9; }
+  .en { font-family:'Inter',sans-serif; }
+  .wm { font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-0.03em; direction:ltr; display:inline-block; }
+  .container { max-width:1140px; margin:0 auto; padding:0 24px; }
+  a { text-decoration:none; color:inherit; }
+
+  /* ===== header ===== */
+  header { position:sticky; top:0; z-index:50; background:rgba(15,23,42,0.92); backdrop-filter:blur(10px); }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .brand { display:flex; align-items:center; gap:11px; }
+  .brand .wm { font-size:22px; color:#fff; }
+  .brand .wm .p { color:var(--blue4); }
+  .nav-links { display:flex; gap:28px; font-size:14.5px; color:#dbe5f7; }
+  .nav-links a:hover { color:#fff; }
+  .nav-cta { background:var(--blue6); color:#fff; padding:9px 22px; border-radius:10px; font-size:14px; font-weight:600; transition:background .15s; }
+  .nav-cta:hover { background:var(--blue7); }
+
+  /* ===== hero ===== */
+  .hero { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); color:#fff; padding:88px 0 0; overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; padding-bottom:80px; }
+  .hero h1 { font-size:44px; font-weight:700; line-height:1.5; }
+  .hero .sub { margin-top:18px; font-size:18px; color:#dbe5f7; font-weight:300; }
+  .hero .sub-en { margin-top:10px; font-size:13.5px; color:var(--blue3); letter-spacing:0.14em; }
+  .cta-row { margin-top:34px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn { display:inline-block; border-radius:12px; padding:14px 32px; font-size:16px; font-weight:600; transition:transform .15s, box-shadow .15s; }
+  .btn.primary { background:var(--blue6); color:#fff; box-shadow:0 8px 20px rgba(37,99,235,0.4); }
+  .btn.primary:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(37,99,235,0.5); }
+  .btn.ghost { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.35); color:#fff; font-weight:500; }
+  .btn.ghost:hover { background:rgba(255,255,255,0.15); }
+  .hero-note { margin-top:16px; font-size:13px; color:var(--blue3); }
+
+  /* hero dashboard mock */
+  .dash { background:#fff; border-radius:16px; box-shadow:0 24px 60px rgba(2,6,23,0.45); overflow:hidden; direction:rtl; }
+  .dash-bar { height:38px; background:var(--slate1); border-bottom:1px solid var(--slate2); display:flex; align-items:center; gap:7px; padding:0 14px; direction:ltr; }
+  .dash-dot { width:10px; height:10px; border-radius:50%; }
+  .dash-body { padding:16px; }
+  .dash-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .dk { border:1px solid var(--slate2); border-right:4px solid var(--slate2); border-radius:10px; padding:10px 12px; background:#fff; }
+  .dk.blue { border-right-color:var(--blue6); } .dk.teal { border-right-color:var(--teal); } .dk.amber { border-right-color:var(--amber); }
+  .dk .n { font-family:'Inter',sans-serif; font-weight:700; font-size:20px; color:var(--navy); }
+  .dk .l { font-size:11px; color:var(--slate5); }
+  .dk .t { font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; color:var(--good); }
+  .dash-chart { margin-top:12px; border:1px solid var(--slate2); border-radius:10px; padding:12px; }
+  .dash-chart .ct { font-size:11.5px; font-weight:600; color:var(--navy); margin-bottom:8px; }
+
+  /* ===== sections ===== */
+  section { padding:76px 0; }
+  .kicker { font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700; letter-spacing:0.16em; color:var(--blue6); text-transform:uppercase; }
+  h2.title { font-size:32px; color:var(--navy); font-weight:700; margin-top:8px; }
+  p.lead { font-size:16.5px; margin-top:12px; max-width:720px; }
+  .grid { display:grid; gap:22px; margin-top:38px; }
+  .g3 { grid-template-columns:repeat(3,1fr); }
+  .g2 { grid-template-columns:1fr 1fr; }
+  .card { background:#fff; border:1px solid var(--slate2); border-radius:16px; padding:26px 26px 24px; box-shadow:var(--shadow-card); transition:transform .18s ease, box-shadow .18s ease; }
+  .card:hover { transform:translateY(-5px); box-shadow:var(--shadow-hover); }
+  .card h3 { font-size:17.5px; color:var(--navy); font-weight:600; margin:14px 0 6px; }
+  .card p { font-size:14px; color:var(--slate6); }
+  .ic { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+  .sec-alt { background:var(--slate05); }
+
+  /* problem strip */
+  .pain { border-right:4px solid var(--red); }
+  .pain h3 { margin-top:0; }
+  .gain { border-right:4px solid var(--good); }
+  .gain h3 { margin-top:0; }
+
+  /* modules */
+  .mod-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:10.5px; font-weight:700; letter-spacing:0.1em; border-radius:999px; padding:3px 12px; margin-bottom:12px; }
+
+  /* numbers band */
+  .band { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); color:#fff; padding:56px 0; }
+  .band-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
+  .band .n { font-family:'Inter',sans-serif; font-size:40px; font-weight:700; }
+  .band .n span { color:var(--blue4); }
+  .band .l { font-size:14px; color:#dbe5f7; margin-top:4px; }
+
+  /* why cards */
+  .check { color:var(--good); font-weight:700; margin-left:8px; }
+
+  /* contact */
+  .contact-box { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); border-radius:22px; color:#fff; padding:58px 48px; text-align:center; }
+  .contact-box h2 { font-size:30px; font-weight:700; }
+  .contact-box p { color:#dbe5f7; margin-top:10px; font-size:16px; }
+  .contact-box .mail { font-family:'Inter',sans-serif; font-size:15px; color:var(--blue3); margin-top:22px; direction:ltr; }
+
+  footer { background:var(--navy); color:#94a3b8; padding:34px 0; font-size:13.5px; }
+  .foot { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .foot .wm { font-size:18px; color:#fff; }
+  .foot .wm .p { color:var(--blue4); }
+
+  html, body { overflow-x:clip; }
+  @media (max-width:900px) {
+    .contact-box { padding:42px 22px; }
+    .contact-box .mail { font-size:12.5px; }
+    .contact-box .mail .sep { display:block; height:4px; }
+    .hero-grid { grid-template-columns:1fr; }
+    .g3, .g2, .band-grid { grid-template-columns:1fr; }
+    .hero h1 { font-size:32px; }
+    .nav-links { display:none; }
+    .band-grid { grid-template-columns:repeat(2,1fr); }
+    .dash-kpis { grid-template-columns:1fr 1fr; }
+    .dash-kpis .dk:last-child { grid-column:1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <svg width="36" height="36" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="240" height="240" rx="54" fill="rgba(255,255,255,0.10)"/>
+        <path d="M38 158 H84 l16 -28 l22 48 l18 -78 l16 24 h20 l12 -14" stroke="#ffffff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="196" cy="104" r="11" fill="#60a5fa"/>
+      </svg>
+      <span class="wm">Dealer<span class="p">Pulse</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#solution">المنصة</a>
+      <a href="#modules">الوحدات</a>
+      <a href="#experience">تجربة العميل</a>
+      <a href="#why">لماذا نحن</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+    <a class="nav-cta" href="#contact">اطلب عرضاً حياً</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <h1>نبض وكالتك،<br>لحظة بلحظة</h1>
+      <div class="sub">منصة الذكاء التشغيلي لوكلاء وموزعي السيارات في السعودية: المبيعات والصيانة وقطع الغيار والولاء والشكاوى في شاشة واحدة حية، بالعربية والإنجليزية.</div>
+      <div class="sub-en en">OPERATIONAL INTELLIGENCE FOR CAR DEALERS</div>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">اطلب عرضاً حياً</a>
+        <a class="btn ghost" href="#modules">استكشف الوحدات</a>
+      </div>
+      <div class="hero-note">عرض تجريبي كامل ببيانات وكالة حقيقية الشكل، من غير أي التزام.</div>
+    </div>
+    <div class="dash">
+      <div class="dash-bar">
+        <div class="dash-dot" style="background:#f87171"></div>
+        <div class="dash-dot" style="background:#fbbf24"></div>
+        <div class="dash-dot" style="background:#34d399"></div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-kpis">
+          <div class="dk blue"><div class="n en">1,248</div><div class="l">عملاء محتملون هذا الشهر</div><div class="t en">&#9650; 12%</div></div>
+          <div class="dk teal"><div class="n en">3,417</div><div class="l">مواعيد صيانة مكتملة</div><div class="t en">&#9650; 8%</div></div>
+          <div class="dk amber"><div class="n en">86,500</div><div class="l">مبيعات إكسسوارات (ريال)</div><div class="t en">&#9650; 5%</div></div>
+        </div>
+        <div class="dash-chart">
+          <div class="ct">أداء الخطوط خلال 30 يوماً</div>
+          <svg width="100%" height="110" viewBox="0 0 520 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="28" x2="520" y2="28" stroke="#f1f5f9"/>
+            <line x1="0" y1="56" x2="520" y2="56" stroke="#f1f5f9"/>
+            <line x1="0" y1="84" x2="520" y2="84" stroke="#f1f5f9"/>
+            <path d="M0 88 C60 80 90 64 140 66 C200 68 230 46 290 42 C350 38 380 50 430 38 C470 29 500 30 520 20" stroke="#2563eb" stroke-width="3" fill="none"/>
+            <path d="M0 98 C70 93 110 86 160 82 C230 77 280 68 330 72 C390 76 430 60 520 46" stroke="#0d9488" stroke-width="3" fill="none"/>
+            <path d="M0 104 C80 101 130 97 190 95 C270 92 330 88 400 84 C450 81 490 78 520 70" stroke="#d97706" stroke-width="3" fill="none"/>
+            <circle cx="520" cy="20" r="4.5" fill="#2563eb"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- المشكلة والحل -->
+<section id="solution">
+  <div class="container">
+    <div class="kicker en">THE PROBLEM</div>
+    <h2 class="title">مشكلة اليوم تظهر في تقرير الشهر القادم</h2>
+    <p class="lead">أغلب الوكالات تدير عملياتها بأنظمة متفرقة وملفات إكسل وتقارير تصل متأخرة. النتيجة: العميل المحتمل يبرد قبل أن يتصل به أحد، وموعد الصيانة يضيع، والشكوى تكبر في صمت.</p>
+    <div class="grid g2">
+      <div class="card pain">
+        <h3>من غير DealerPulse</h3>
+        <p>كل قسم يرى شاشته فقط، والمدير يرى الحقيقة في نهاية الشهر، وقرار المعالجة يأتي بعد أن يكون العميل قد اشترى من المنافس أو صان سيارته عند غيرك.</p>
+      </div>
+      <div class="card gain">
+        <h3>مع DealerPulse</h3>
+        <p>كل عميل محتمل وكل موعد وكل شكوى على شاشة حية واحدة، مع مؤشرات ملونة تقول لك أين الخلل الآن، ومن المسؤول، وما الخطوة التالية المقترحة، قبل نهاية اليوم لا نهاية الشهر.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- الوحدات -->
+<section id="modules" class="sec-alt">
+  <div class="container">
+    <div class="kicker en">MODULES</div>
+    <h2 class="title">تسع وحدات تغطي رحلة العميل كاملة</h2>
+    <p class="lead">من أول ظهور للعميل المحتمل إلى ولائه بعد سنوات، كل مرحلة لها وحدة متخصصة، وكلها تقرأ من قاعدة واحدة.</p>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>إدارة العملاء المحتملين</h3>
+        <p>كل عميل محتمل من أي قناة (اتصال، واتساب، حملة، معرض) يدخل مساراً واحداً بزمن استجابة مراقب، فلا يبرد أحد في الطريق.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div>
+        <h3>التسويق والحملات</h3>
+        <p>حملاتك مربوطة بنتائجها الفعلية: كم عميلاً جلبت الحملة، وكم منهم اشترى فعلاً، بالريال لا بالانطباع.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#f0fdfa"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>مواعيد الصيانة</h3>
+        <p>حجز وتوزيع وتذكير آلي بالمواعيد، مع منع تعارض المركبة الواحدة بين المدن والفروع، ومتابعة الإنجاز أولاً بأول.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fffbeb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <h3>قطع الغيار والإكسسوارات</h3>
+        <p>مبيعات القطع والإكسسوارات بالتفصيل: الفرع، والصنف، والهامش، وفرص البيع الإضافي على كل فاتورة صيانة.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fdf2f8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>برنامج الولاء</h3>
+        <p>نقاط ومستويات ومكافآت تعيد العميل إليك في الصيانة القادمة والسيارة القادمة، بقواعد واضحة قابلة للقياس.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fef2f2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>الشكاوى وتجربة العميل</h3>
+        <p>كل شكوى لها مسار ومسؤول وسقف زمني، ولوحة تصعيد تمنع أن تصل الشكوى إلى تويتر قبل أن تصل إليك.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+        <h3>عمليات مركز الاتصال</h3>
+        <p>شاشة لموظف مركز الاتصال وشاشة لمشرفه: الوارد والصادر بزمن معالجة مراقب، وتحويل نظيف للقسم المسؤول بلا مكالمات ضائعة.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3>قياس رضا العملاء (NPS)</h3>
+        <p>استبيان قصير بعد البيع وبعد الصيانة، ودرجة رضا لكل فرع وقسم، والعميل غير الراضي يُتَّصل به قبل أن يتحول إلى شكوى.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#f0fdfa"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>التحليلات والداشبورد</h3>
+        <p>لوحات حية لكل مستوى: الموظف يرى يومه، والمشرف يرى فريقه، والإدارة ترى الصورة كاملة بالأرقام لا بالانطباعات.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- تجربة العميل -->
+<section id="experience">
+  <div class="container">
+    <div class="kicker en">CUSTOMER EXPERIENCE</div>
+    <h2 class="title">أفضل تجربة عميل في السوق، بالتصميم لا بالصدفة</h2>
+    <p class="lead">الفرق بين وكالة يوصي بها عملاؤها ووكالة يشتكي منها عملاؤها ليس الحظ، بل ثلاث قدرات تعمل كل يوم:</p>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ic" style="background:#fffbeb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>إنذار مبكر قبل أن تبدأ المشكلة</h3>
+        <p>المؤشرات الحية تكشف الاتجاه وهو يتكون: زمن استجابة يتباطأ، فرع يتراجع، عميل يوشك أن ينسحب. تتدخل مبكراً وأنت في موقع القوة، لا بعد أن تصلك المشكلة شكوى.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></div>
+        <h3>تعامل مخصص مع كل عميل</h3>
+        <p>ملف 360 درجة لكل عميل: مركباته وتاريخه وتفضيلاته وكل تواصل سابق. فكل مكالمة تبدأ من معرفة كاملة بمن تكلم وماذا يحتاج الآن، لا من الصفر.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h3>تجربة تتحسن كل شهر</h3>
+        <p>رضا العملاء يقاس بعد كل تفاعل، والنتيجة تعود لصاحب القرار في القسم نفسه، فتتحول كل ملاحظة عميل إلى تحسين دائم في الإجراء لا مجرد اعتذار.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- أرقام -->
+<div class="band">
+  <div class="container band-grid">
+    <div><div class="n en">360<span>&deg;</span></div><div class="l">رؤية كاملة للعميل والمركبة</div></div>
+    <div><div class="n en">9</div><div class="l">وحدات متكاملة على قاعدة واحدة</div></div>
+    <div><div class="n en">2</div><div class="l">لغتان: عربي وإنجليزي</div></div>
+    <div><div class="n"><span class="en">100%</span></div><div class="l">مبني لسوق السيارات السعودي</div></div>
+  </div>
+</div>
+
+<!-- لماذا -->
+<section id="why">
+  <div class="container">
+    <div class="kicker en">WHY DEALERPULSE</div>
+    <h2 class="title">لماذا يختارنا وكيل السيارات</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>مبني لهذا السوق تحديداً</h3>
+        <p>لسنا نظاماً عالمياً عاماً جرى تعريبه. بني من أول سطر حول رحلة العميل في الوكالات السعودية: مركز الاتصال، وخطوط المبيعات والصيانة والقطع، وقواعد العمل المحلية.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>قرارك بالأرقام الحية</h3>
+        <p>كل مؤشر تراه محسوب من العمليات الفعلية لحظة عرضه، لا من تقرير أعد بالأمس. والمشكلة تظهر ملونة قبل أن تكبر.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>يعمل من اليوم الأول</h3>
+        <p>واجهة يفهمها الموظف من أول جلسة، وعرض تجريبي كامل ببيانات تشبه بيانات وكالتك تراه قبل أي التزام، وتخصيص على مسمياتك وفروعك.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- تواصل -->
+<section id="contact" class="sec-alt">
+  <div class="container">
+    <div class="contact-box">
+      <h2>شاهد نبض وكالتك في عرض حي</h2>
+      <p>راسلنا وسنرتب لك جولة كاملة في المنصة ببيانات وكالة حقيقية الشكل، بالعربية، خلال يوم عمل واحد.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn primary" href="mailto:admin@getdealerpulse.com?subject=%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B1%D8%B6%20%D8%AD%D9%8A%20-%20DealerPulse">اطلب عرضاً حياً الآن</a>
+      </div>
+      <div class="mail en">admin@getdealerpulse.com<span class="sep"> &nbsp;&middot;&nbsp; </span>getdealerpulse.com</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <span class="wm">Dealer<span class="p">Pulse</span></span>
+    <span>&copy; <span class="en">2026</span> DealerPulse - منصة الذكاء التشغيلي لوكلاء السيارات</span>
+  </div>
+</footer>
+
+</body>
+</html>
