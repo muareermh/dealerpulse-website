@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealerPulse - Your dealership's pulse, live</title>
+<meta name="description" content="DealerPulse is the operational intelligence platform for car dealers and distributors in Saudi Arabia and the Gulf: sales, service, parts, accessories, loyalty and complaints on one live screen.">
+<link rel="alternate" hreflang="ar" href="https://getdealerpulse.com/">
+<link rel="alternate" hreflang="en" href="https://getdealerpulse.com/en/">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="10" y1="10" x2="230" y2="230" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%230f172a"/><stop offset="1" stop-color="%231d4ed8"/></linearGradient><clipPath id="l"><rect x="0" y="0" width="120" height="240"/></clipPath><clipPath id="r"><rect x="120" y="0" width="120" height="240"/></clipPath></defs><circle cx="120" cy="120" r="116" fill="url(%23g)"/><g clip-path="url(%23l)" stroke="white" fill="none" stroke-linecap="round"><circle cx="120" cy="120" r="76" stroke-width="26"/><path d="M120 120 L44 120" stroke-width="24"/></g><g clip-path="url(%23r)"><path d="M120 120 h18 l20 -58 l26 116 l20 -58 h18" stroke="white" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0f172a; --blue7:#1d4ed8; --blue6:#2563eb; --blue5:#3b82f6;
+    --blue4:#60a5fa; --blue3:#93c5fd; --blue1:#dbeafe; --blue05:#eff6ff;
+    --slate7:#334155; --slate6:#475569; --slate5:#64748b; --slate2:#e2e8f0; --slate1:#f1f5f9; --slate05:#f8fafc;
+    --good:#15803d; --teal:#0d9488; --amber:#d97706; --red:#dc2626;
+    --shadow-card:0 3px 10px rgba(15,23,42,0.05);
+    --shadow-hover:0 10px 22px rgba(15,23,42,0.13);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  html, body { overflow-x:clip; }
+  body { font-family:'Inter',sans-serif; color:var(--slate7); background:#fff; line-height:1.75; }
+  .wm { font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:-0.03em; display:inline-block; }
+  .container { max-width:1140px; margin:0 auto; padding:0 24px; }
+  a { text-decoration:none; color:inherit; }
+
+  header { position:sticky; top:0; z-index:50; background:rgba(15,23,42,0.92); backdrop-filter:blur(10px); }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .brand { display:flex; align-items:center; gap:11px; }
+  .brand .wm { font-size:22px; color:#fff; }
+  .brand .wm .p { color:var(--blue4); }
+  .nav-links { display:flex; gap:28px; font-size:14.5px; color:#dbe5f7; }
+  .nav-links a:hover { color:#fff; }
+  .nav-right { display:flex; align-items:center; gap:14px; }
+  .lang { font-size:13px; font-weight:600; color:#dbe5f7; border:1px solid rgba(255,255,255,0.3); border-radius:8px; padding:6px 13px; transition:background .15s; }
+  .lang:hover { background:rgba(255,255,255,0.12); color:#fff; }
+  .nav-cta { background:var(--blue6); color:#fff; padding:9px 22px; border-radius:10px; font-size:14px; font-weight:600; transition:background .15s; }
+  .nav-cta:hover { background:var(--blue7); }
+
+  .hero { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); color:#fff; padding:88px 0 0; overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center; padding-bottom:80px; }
+  .hero h1 { font-size:46px; font-weight:700; line-height:1.25; letter-spacing:-0.02em; }
+  .hero .sub { margin-top:20px; font-size:18px; color:#dbe5f7; font-weight:300; }
+  .hero .sub-ar { margin-top:10px; font-size:14px; color:var(--blue3); letter-spacing:0.06em; }
+  .cta-row { margin-top:34px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn { display:inline-block; border-radius:12px; padding:14px 32px; font-size:16px; font-weight:600; transition:transform .15s, box-shadow .15s; }
+  .btn.primary { background:var(--blue6); color:#fff; box-shadow:0 8px 20px rgba(37,99,235,0.4); }
+  .btn.primary:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(37,99,235,0.5); }
+  .btn.ghost { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.35); color:#fff; font-weight:500; }
+  .btn.ghost:hover { background:rgba(255,255,255,0.15); }
+  .hero-note { margin-top:16px; font-size:13px; color:var(--blue3); }
+
+  .dash { background:#fff; border-radius:16px; box-shadow:0 24px 60px rgba(2,6,23,0.45); overflow:hidden; }
+  .dash-bar { height:38px; background:var(--slate1); border-bottom:1px solid var(--slate2); display:flex; align-items:center; gap:7px; padding:0 14px; }
+  .dash-dot { width:10px; height:10px; border-radius:50%; }
+  .dash-body { padding:16px; }
+  .dash-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .dk { border:1px solid var(--slate2); border-left:4px solid var(--slate2); border-radius:10px; padding:10px 12px; background:#fff; }
+  .dk.blue { border-left-color:var(--blue6); } .dk.teal { border-left-color:var(--teal); } .dk.amber { border-left-color:var(--amber); }
+  .dk .n { font-weight:700; font-size:20px; color:var(--navy); }
+  .dk .l { font-size:11px; color:var(--slate5); line-height:1.5; }
+  .dk .t { font-size:10.5px; font-weight:600; color:var(--good); }
+  .dash-chart { margin-top:12px; border:1px solid var(--slate2); border-radius:10px; padding:12px; }
+  .dash-chart .ct { font-size:11.5px; font-weight:600; color:var(--navy); margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  .dash-chart .legend { display:flex; gap:11px; font-size:10px; font-weight:500; color:var(--slate5); }
+  .dash-chart .legend span { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
+  .dash-chart .legend i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .dash-chart .xaxis { display:flex; justify-content:space-between; font-size:9.5px; color:#94a3b8; margin-top:5px; padding:0 1px; }
+
+  section { padding:76px 0; }
+  .kicker { font-size:12.5px; font-weight:700; letter-spacing:0.16em; color:var(--blue6); text-transform:uppercase; }
+  h2.title { font-size:33px; color:var(--navy); font-weight:700; margin-top:8px; letter-spacing:-0.02em; }
+  p.lead { font-size:16.5px; margin-top:12px; max-width:730px; }
+  .grid { display:grid; gap:22px; margin-top:38px; }
+  .g3 { grid-template-columns:repeat(3,1fr); }
+  .g2 { grid-template-columns:1fr 1fr; }
+  .card { background:#fff; border:1px solid var(--slate2); border-radius:16px; padding:26px 26px 24px; box-shadow:var(--shadow-card); transition:transform .18s ease, box-shadow .18s ease; }
+  .card:hover { transform:translateY(-5px); box-shadow:var(--shadow-hover); }
+  .card h3 { font-size:17.5px; color:var(--navy); font-weight:600; margin:14px 0 6px; }
+  .card p { font-size:14px; color:var(--slate6); }
+  .ic { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+  .sec-alt { background:var(--slate05); }
+  .pain { border-left:4px solid var(--red); }
+  .pain h3 { margin-top:0; }
+  .gain { border-left:4px solid var(--good); }
+  .gain h3 { margin-top:0; }
+
+  .band { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); color:#fff; padding:56px 0; }
+  .band-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center; }
+  .band .n { font-size:40px; font-weight:700; }
+  .band .n span { color:var(--blue4); }
+  .band .l { font-size:14px; color:#dbe5f7; margin-top:4px; }
+  .check { color:var(--good); font-weight:700; margin-right:8px; }
+
+  .contact-box { background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%); border-radius:22px; color:#fff; padding:58px 48px; text-align:center; }
+  .contact-box h2 { font-size:31px; font-weight:700; letter-spacing:-0.02em; }
+  .contact-box p { color:#dbe5f7; margin-top:10px; font-size:16px; }
+  .contact-box .mail { font-size:15px; color:var(--blue3); margin-top:22px; }
+
+  footer { background:var(--navy); color:#94a3b8; padding:34px 0; font-size:13.5px; }
+  .foot { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+  .foot .wm { font-size:18px; color:#fff; }
+  .foot .wm .p { color:var(--blue4); }
+
+  @media (max-width:900px) {
+    .hero-grid { grid-template-columns:1fr; }
+    .g3, .g2, .band-grid { grid-template-columns:1fr; }
+    .hero h1 { font-size:33px; }
+    .nav-links { display:none; }
+    .band-grid { grid-template-columns:repeat(2,1fr); }
+    .dash-kpis { grid-template-columns:1fr 1fr; }
+    .dash-kpis .dk:last-child { grid-column:1 / -1; }
+    .contact-box { padding:42px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <svg width="38" height="38" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="navL"><rect x="0" y="0" width="120" height="240"/></clipPath>
+          <clipPath id="navR"><rect x="120" y="0" width="120" height="240"/></clipPath>
+        </defs>
+        <circle cx="120" cy="120" r="116" fill="rgba(255,255,255,0.12)"/>
+        <g clip-path="url(#navL)" stroke="#ffffff" fill="none" stroke-linecap="round">
+          <circle cx="120" cy="120" r="82" stroke-width="13"/>
+          <circle cx="120" cy="120" r="30" stroke-width="13"/>
+          <path d="M120 90 L64 62" stroke-width="12"/>
+          <path d="M120 120 L38 120" stroke-width="12"/>
+          <path d="M120 150 L64 178" stroke-width="12"/>
+        </g>
+        <g clip-path="url(#navR)">
+          <path d="M120 120 h18 l16 -42 l22 82 l16 -46 h24" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="216" cy="114" r="10" fill="#60a5fa"/>
+        </g>
+        <path d="M120 8 V232" stroke="#ffffff" stroke-width="6" opacity="0.35"/>
+      </svg>
+      <span class="wm">Dealer<span class="p">Pulse</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#solution">Platform</a>
+      <a href="#modules">Modules</a>
+      <a href="#experience">Customer Experience</a>
+      <a href="#why">Why us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a class="lang" href="/">العربية</a>
+      <a class="nav-cta" href="#contact">Book a live demo</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <h1>Your dealership's pulse,<br>live</h1>
+      <div class="sub">The operational intelligence platform for car dealers and distributors in Saudi Arabia and the Gulf: sales, service, parts, accessories, loyalty and complaints on one live screen, in Arabic and English.</div>
+      <div class="sub-ar">نبض وكالتك، لحظة بلحظة</div>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">Book a live demo</a>
+        <a class="btn ghost" href="#modules">Explore the modules</a>
+      </div>
+      <div class="hero-note">A full walkthrough on realistic dealership data, with no commitment.</div>
+    </div>
+    <div class="dash">
+      <div class="dash-bar">
+        <div class="dash-dot" style="background:#f87171"></div>
+        <div class="dash-dot" style="background:#fbbf24"></div>
+        <div class="dash-dot" style="background:#34d399"></div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-kpis">
+          <div class="dk blue"><div class="n">1,248</div><div class="l">Leads this month</div><div class="t">&#9650; 12%</div></div>
+          <div class="dk teal"><div class="n">3,417</div><div class="l">Service visits completed</div><div class="t">&#9650; 8%</div></div>
+          <div class="dk amber"><div class="n">86,500</div><div class="l">Accessories sales (SAR)</div><div class="t">&#9650; 5%</div></div>
+        </div>
+        <div class="dash-chart">
+          <div class="ct">
+            <span>Department performance, 6 months</span>
+            <span class="legend">
+              <span><i style="background:#2563eb"></i>Leads</span>
+              <span><i style="background:#0d9488"></i>Service</span>
+              <span><i style="background:#d97706"></i>Accessories</span>
+            </span>
+          </div>
+          <svg width="100%" height="110" viewBox="0 0 520 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="28" x2="520" y2="28" stroke="#f1f5f9"/>
+            <line x1="0" y1="56" x2="520" y2="56" stroke="#f1f5f9"/>
+            <line x1="0" y1="84" x2="520" y2="84" stroke="#f1f5f9"/>
+            <path d="M0 88 C60 80 90 64 140 66 C200 68 230 46 290 42 C350 38 380 50 430 38 C470 29 500 30 512 20" stroke="#2563eb" stroke-width="3" fill="none"/>
+            <path d="M0 98 C70 93 110 86 160 82 C230 77 280 68 330 72 C390 76 430 60 512 46" stroke="#0d9488" stroke-width="3" fill="none"/>
+            <path d="M0 104 C80 101 130 97 190 95 C270 92 330 88 400 84 C450 81 490 78 512 70" stroke="#d97706" stroke-width="3" fill="none"/>
+            <circle cx="512" cy="20" r="4.5" fill="#2563eb"/>
+          </svg>
+          <div class="xaxis">
+            <span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="solution">
+  <div class="container">
+    <div class="kicker">The problem</div>
+    <h2 class="title">Today's problem shows up in next month's report</h2>
+    <p class="lead">Most dealerships run on disconnected systems, spreadsheets and reports that arrive too late. The result: the lead loses interest before anyone calls, the service booking slips, and the complaint grows in silence.</p>
+    <div class="grid g2">
+      <div class="card pain">
+        <h3>Without DealerPulse</h3>
+        <p>Every department sees only its own screen, management only finds the problem at month end, and the fix comes after the customer has already bought from a competitor or serviced the car somewhere else.</p>
+      </div>
+      <div class="card gain">
+        <h3>With DealerPulse</h3>
+        <p>Every lead, booking and complaint on one live screen, with colour-coded signals telling you where the problem is right now, who owns it, and what to do next - before the day ends, not before the month does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modules" class="sec-alt">
+  <div class="container">
+    <div class="kicker">Modules</div>
+    <h2 class="title">Nine modules covering the full customer journey</h2>
+    <p class="lead">From the moment a lead appears to years of loyalty afterwards, every stage has a dedicated module, and all of them read from one database.</p>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Lead management</h3>
+        <p>Every lead from every channel - call, WhatsApp, campaign, showroom - enters one pipeline with a monitored response time, so nobody goes cold on the way.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg></div>
+        <h3>Marketing and campaigns</h3>
+        <p>Campaigns tied to their real outcome: how many leads a campaign brought, and how many of them actually bought - in riyals, not impressions.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#f0fdfa"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Service appointments</h3>
+        <p>Booking, allocation and automatic reminders, with a guard that stops the same vehicle being double-booked across branches and cities, and progress tracked as it happens.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fffbeb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <h3>Parts and accessories</h3>
+        <p>Parts and accessories sales in detail - branch, item, margin - plus the upsell opportunity sitting on every service invoice.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fdf2f8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Loyalty programme</h3>
+        <p>Points, tiers and rewards that bring the customer back for the next service and the next car, under clear rules you can measure.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#fef2f2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <h3>Complaints and CX</h3>
+        <p>Every complaint has a route, an owner and a deadline, with an escalation board that stops a complaint going public before it reaches you.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+        <h3>Contact centre operations</h3>
+        <p>One screen for the agent and one for the supervisor: inbound and outbound with monitored handling time, and a direct handover to the owning department with no dropped calls.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3>Satisfaction and loyalty</h3>
+        <p>A short survey after a sale and after a service measures satisfaction with the service, while NPS measures how ready the customer is to recommend you - scored by branch and department. Anyone who scores low is called before it becomes a complaint.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#f0fdfa"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <h3>Analytics and dashboards</h3>
+        <p>Live dashboards at every level: the employee sees their day, the supervisor sees the team, and management sees the whole picture in numbers rather than impressions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="kicker">Customer experience</div>
+    <h2 class="title">The best customer experience in the market, by design</h2>
+    <p class="lead">What separates a dealership customers recommend from one they complain about is not luck. It is three capabilities working every day:</p>
+    <div class="grid g3">
+      <div class="card">
+        <div class="ic" style="background:#fffbeb"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Early warning, before the problem starts</h3>
+        <p>Live signals expose a trend while it is still forming: a response time slipping, a branch falling behind, a customer about to walk away. You step in early and from a position of strength, instead of meeting the problem as a complaint.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></div>
+        <h3>A personal approach to every customer</h3>
+        <p>A 360-degree file for each customer: their vehicles, history, preferences and every past contact. So every call starts from full knowledge of who is on the line and what they need now, not from zero.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:#ecfdf5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h3>An experience that improves every month</h3>
+        <p>Satisfaction and likelihood to recommend are measured after every interaction, and the result goes back to the decision maker in that same department - so each piece of feedback becomes a permanent fix in the process, not just an apology.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="container band-grid">
+    <div><div class="n">360<span>&deg;</span></div><div class="l">A complete view of customer and vehicle</div></div>
+    <div><div class="n">9</div><div class="l">Integrated modules on one database</div></div>
+    <div><div class="n">2</div><div class="l">Languages: Arabic and English</div></div>
+    <div><div class="n"><span>100%</span></div><div class="l">Built for the Saudi and Gulf car market</div></div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="container">
+    <div class="kicker">Why DealerPulse</div>
+    <h2 class="title">Why dealers choose us</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>Built for this market specifically</h3>
+        <p>We are not a global system that was translated. It was built from the first line around the customer journey in Saudi and Gulf dealerships: the contact centre, the sales, service and parts lines, and local business rules.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>Decisions on live numbers</h3>
+        <p>Every figure you see is computed from actual operations the moment it is shown, not from a report prepared yesterday. And a problem shows up in colour before it grows.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0"><span class="check">&#10003;</span>Working from day one</h3>
+        <p>An interface staff understand in their first session, a full walkthrough on data that looks like your own before any commitment, and configuration to your titles and branches.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="sec-alt">
+  <div class="container">
+    <div class="contact-box">
+      <h2>See your dealership's pulse live</h2>
+      <p>Write to us and we will arrange a slot that suits your team: a full walkthrough of the platform on realistic dealership data, in Arabic or English.</p>
+      <div class="cta-row" style="justify-content:center">
+        <a class="btn primary" href="mailto:admin@getdealerpulse.com?subject=Demo%20request%20-%20DealerPulse">Book a live demo</a>
+      </div>
+      <div class="mail">admin@getdealerpulse.com &nbsp;&middot;&nbsp; getdealerpulse.com</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <span class="wm">Dealer<span class="p">Pulse</span></span>
+    <span>&copy; 2026 DealerPulse - Operational intelligence for car dealers</span>
+  </div>
+</footer>
+
+</body>
+</html>
