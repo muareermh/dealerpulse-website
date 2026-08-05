@@ -63,7 +63,11 @@
   .dk .l { font-size:11px; color:var(--slate5); }
   .dk .t { font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; color:var(--good); }
   .dash-chart { margin-top:12px; border:1px solid var(--slate2); border-radius:10px; padding:12px; }
-  .dash-chart .ct { font-size:11.5px; font-weight:600; color:var(--navy); margin-bottom:8px; }
+  .dash-chart .ct { font-size:11.5px; font-weight:600; color:var(--navy); margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  .dash-chart .legend { display:flex; gap:11px; font-size:10px; font-weight:500; color:var(--slate5); }
+  .dash-chart .legend span { display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
+  .dash-chart .legend i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .dash-chart .xaxis { display:flex; justify-content:space-between; font-size:9.5px; color:#94a3b8; margin-top:5px; padding:0 1px; direction:ltr; }
 
   /* ===== sections ===== */
   section { padding:76px 0; }
@@ -166,7 +170,7 @@
   <div class="container hero-grid">
     <div>
       <h1>نبض وكالتك،<br>لحظة بلحظة</h1>
-      <div class="sub">منصة الذكاء التشغيلي لوكلاء وموزعي السيارات في السعودية: المبيعات والصيانة وقطع الغيار والولاء والشكاوى في شاشة واحدة حية، بالعربية والإنجليزية.</div>
+      <div class="sub">منصة الذكاء التشغيلي لوكلاء وموزعي السيارات في السعودية: المبيعات والصيانة وقطع الغيار والإكسسوارات والولاء والشكاوى في شاشة واحدة حية، بالعربية والإنجليزية.</div>
       <div class="sub-en en">OPERATIONAL INTELLIGENCE FOR CAR DEALERS</div>
       <div class="cta-row">
         <a class="btn primary" href="#contact">اطلب عرضاً حياً</a>
@@ -187,16 +191,26 @@
           <div class="dk amber"><div class="n en">86,500</div><div class="l">مبيعات إكسسوارات (ريال)</div><div class="t en">&#9650; 5%</div></div>
         </div>
         <div class="dash-chart">
-          <div class="ct">أداء الخطوط خلال 30 يوماً</div>
+          <div class="ct">
+            <span>أداء الخطوط خلال 6 أشهر</span>
+            <span class="legend">
+              <span><i style="background:#2563eb"></i>عملاء محتملون</span>
+              <span><i style="background:#0d9488"></i>مواعيد صيانة</span>
+              <span><i style="background:#d97706"></i>إكسسوارات</span>
+            </span>
+          </div>
           <svg width="100%" height="110" viewBox="0 0 520 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <line x1="0" y1="28" x2="520" y2="28" stroke="#f1f5f9"/>
             <line x1="0" y1="56" x2="520" y2="56" stroke="#f1f5f9"/>
             <line x1="0" y1="84" x2="520" y2="84" stroke="#f1f5f9"/>
-            <path d="M0 88 C60 80 90 64 140 66 C200 68 230 46 290 42 C350 38 380 50 430 38 C470 29 500 30 520 20" stroke="#2563eb" stroke-width="3" fill="none"/>
-            <path d="M0 98 C70 93 110 86 160 82 C230 77 280 68 330 72 C390 76 430 60 520 46" stroke="#0d9488" stroke-width="3" fill="none"/>
-            <path d="M0 104 C80 101 130 97 190 95 C270 92 330 88 400 84 C450 81 490 78 520 70" stroke="#d97706" stroke-width="3" fill="none"/>
-            <circle cx="520" cy="20" r="4.5" fill="#2563eb"/>
+            <path d="M0 88 C60 80 90 64 140 66 C200 68 230 46 290 42 C350 38 380 50 430 38 C470 29 500 30 512 20" stroke="#2563eb" stroke-width="3" fill="none"/>
+            <path d="M0 98 C70 93 110 86 160 82 C230 77 280 68 330 72 C390 76 430 60 512 46" stroke="#0d9488" stroke-width="3" fill="none"/>
+            <path d="M0 104 C80 101 130 97 190 95 C270 92 330 88 400 84 C450 81 490 78 512 70" stroke="#d97706" stroke-width="3" fill="none"/>
+            <circle cx="512" cy="20" r="4.5" fill="#2563eb"/>
           </svg>
+          <div class="xaxis">
+            <span>مارس</span><span>أبريل</span><span>مايو</span><span>يونيو</span><span>يوليو</span><span>أغسطس</span>
+          </div>
         </div>
       </div>
     </div>
@@ -257,7 +271,7 @@
       <div class="card">
         <div class="ic" style="background:#fef2f2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
         <h3>الشكاوى وتجربة العميل</h3>
-        <p>كل شكوى لها مسار ومسؤول وسقف زمني، ولوحة تصعيد تمنع أن تصل الشكوى إلى تويتر قبل أن تصل إليك.</p>
+        <p>كل شكوى لها مسار ومسؤول وسقف زمني، ولوحة تصعيد تمنع أن تخرج الشكوى إلى العلن قبل أن تصل إليك.</p>
       </div>
       <div class="card">
         <div class="ic" style="background:var(--blue05)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
