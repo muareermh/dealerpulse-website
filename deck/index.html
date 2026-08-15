@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DealerPulse - Investor Overview</title>
+<meta name="description" content="DealerPulse investor overview: operational intelligence platform for automotive dealers in Saudi Arabia and the Gulf.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g" x1="10" y1="10" x2="230" y2="230" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%230f172a"/><stop offset="1" stop-color="%231d4ed8"/></linearGradient><clipPath id="l"><rect x="0" y="0" width="120" height="240"/></clipPath><clipPath id="r"><rect x="120" y="0" width="120" height="240"/></clipPath></defs><circle cx="120" cy="120" r="116" fill="url(%23g)"/><g clip-path="url(%23l)" stroke="white" fill="none" stroke-linecap="round"><circle cx="120" cy="120" r="76" stroke-width="26"/><path d="M120 120 L44 120" stroke-width="24"/></g><g clip-path="url(%23r)"><path d="M120 120 h18 l20 -58 l26 116 l20 -58 h18" stroke="white" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0f172a;--blue7:#1d4ed8;--blue6:#2563eb;--blue4:#60a5fa;--blue3:#93c5fd;--blue05:#eff6ff;
+        --slate7:#334155;--slate6:#475569;--slate5:#64748b;--slate2:#e2e8f0;--slate1:#f1f5f9;--slate05:#f8fafc;
+        --good:#15803d;--teal:#0d9488;--amber:#d97706;--red:#dc2626;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth} html,body{overflow-x:clip}
+  body{font-family:'Inter',sans-serif;color:var(--slate7);background:#fff;line-height:1.7}
+  .wm{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-.03em;display:inline-block}
+  .slide{min-height:100vh;display:flex;align-items:center;padding:80px 0;border-bottom:1px solid var(--slate2)}
+  .slide.dark{background:linear-gradient(135deg,var(--navy) 0%,var(--blue7) 100%);color:#fff;border-bottom:none}
+  .slide.alt{background:var(--slate05)}
+  .c{max-width:1080px;margin:0 auto;padding:0 32px;width:100%}
+  .num{font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--blue6);text-transform:uppercase}
+  .slide.dark .num{color:var(--blue3)}
+  h1{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:14px}
+  h2{font-size:38px;font-weight:700;color:var(--navy);letter-spacing:-.02em;line-height:1.2;margin-top:10px}
+  .slide.dark h2{color:#fff}
+  p.lead{font-size:19px;margin-top:18px;max-width:760px;color:var(--slate6)}
+  .slide.dark p.lead{color:#dbe5f7}
+  .grid{display:grid;gap:20px;margin-top:36px}
+  .g2{grid-template-columns:1fr 1fr} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:#fff;border:1px solid var(--slate2);border-radius:16px;padding:24px;box-shadow:0 3px 10px rgba(15,23,42,.05)}
+  .card h3{font-size:17px;color:var(--navy);font-weight:600;margin-bottom:6px}
+  .card p{font-size:14.5px;color:var(--slate6)}
+  .stat{text-align:center}
+  .stat .n{font-size:44px;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+  .slide.dark .stat .n{color:#fff}
+  .stat .n span{color:var(--blue6)} .slide.dark .stat .n span{color:var(--blue4)}
+  .stat .l{font-size:14px;color:var(--slate5);margin-top:4px;line-height:1.5}
+  .slide.dark .stat .l{color:#dbe5f7}
+  .pain{border-left:4px solid var(--red)} .gain{border-left:4px solid var(--good)}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 10px rgba(15,23,42,.05);font-size:14.5px;margin-top:26px}
+  th{background:var(--navy);color:#fff;font-weight:600;padding:13px 18px;text-align:left}
+  td{padding:12px 18px;border-bottom:1px solid var(--slate1);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .tick{color:var(--good);font-weight:700} .cross{color:var(--red);font-weight:700}
+  .brand-row{display:flex;align-items:center;gap:14px}
+  .brand-row .wm{font-size:26px;color:#fff}.brand-row .wm i{color:var(--blue4);font-style:normal}
+  .cta{display:inline-block;background:var(--blue6);color:#fff;border-radius:12px;padding:15px 34px;font-size:16px;font-weight:600;text-decoration:none;margin-top:28px}
+  .foot-note{font-size:13px;color:var(--slate5);margin-top:22px}
+  .slide.dark .foot-note{color:var(--blue3)}
+  .bar{display:flex;height:34px;border-radius:9px;overflow:hidden;margin-top:22px;font-size:11.5px;font-weight:700;color:#fff}
+  .bar div{display:flex;align-items:center;justify-content:center;white-space:nowrap}
+  @media(max-width:860px){
+    h1{font-size:36px}h2{font-size:27px}p.lead{font-size:16px}
+    .g2,.g3,.g4{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}
+    .slide{min-height:auto;padding:56px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="slide dark">
+  <div class="c">
+    <div class="brand-row">
+      <svg width="52" height="52" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="cl"><rect x="0" y="0" width="120" height="240"/></clipPath>
+        <clipPath id="cr"><rect x="120" y="0" width="120" height="240"/></clipPath></defs>
+        <circle cx="120" cy="120" r="116" fill="rgba(255,255,255,0.12)"/>
+        <g clip-path="url(#cl)" stroke="#fff" fill="none" stroke-linecap="round">
+          <circle cx="120" cy="120" r="82" stroke-width="13"/><circle cx="120" cy="120" r="30" stroke-width="13"/>
+          <path d="M120 90 L64 62" stroke-width="12"/><path d="M120 120 L38 120" stroke-width="12"/><path d="M120 150 L64 178" stroke-width="12"/>
+        </g>
+        <g clip-path="url(#cr)">
+          <path d="M120 120 h18 l16 -42 l22 82 l16 -46 h24" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="216" cy="114" r="10" fill="#60a5fa"/>
+        </g>
+        <path d="M120 8 V232" stroke="#fff" stroke-width="6" opacity="0.35"/>
+      </svg>
+      <span class="wm">Dealer<i>Pulse</i></span>
+    </div>
+    <h1>Your dealership's pulse,<br>live.</h1>
+    <p class="lead">The operational intelligence platform built for automotive dealers in Saudi Arabia and the Gulf. Sales, service, parts, complaints and loyalty on one live screen - in Arabic and English.</p>
+    <div class="foot-note">Investor Overview &middot; August 2026 &middot; getdealerpulse.com</div>
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="c">
+    <div class="num">The problem</div>
+    <h2>Today's problem shows up in next month's report</h2>
+    <p class="lead">Saudi dealerships run on disconnected systems and spreadsheets. By the time a manager sees the number, the damage is done.</p>
+    <div class="grid g3">
+      <div class="card pain"><h3>The lead goes cold</h3><p>Enquiries arrive across phone, WhatsApp, campaigns and walk-ins with no single pipeline and no monitored response time.</p></div>
+      <div class="card pain"><h3>The service slot slips</h3><p>Bookings live in separate systems per branch; the same vehicle gets double-booked, and no-shows are discovered after the fact.</p></div>
+      <div class="card pain"><h3>The complaint goes public</h3><p>No owner, no deadline, no escalation path - so the customer's next step is social media, not the dealership.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 SOLUTION -->
+<section class="slide alt">
+  <div class="c">
+    <div class="num">The solution</div>
+    <h2>One platform, built around the Saudi dealer journey</h2>
+    <div class="grid g2">
+      <div class="card gain"><h3>Live, not reported</h3><p>Every figure is computed from actual records the moment the screen opens. No one types a number into a report.</p></div>
+      <div class="card gain"><h3>Arabic-first, bilingual</h3><p>Built in Arabic from the first line, with English alongside - not a translated global product.</p></div>
+      <div class="card gain"><h3>Complements, never replaces</h3><p>Integrates with existing sales and aftersales systems through an API layer. No rip-and-replace objection.</p></div>
+      <div class="card gain"><h3>Nine modules, one database</h3><p>Leads, marketing, service, parts &amp; accessories, loyalty, complaints, contact centre, satisfaction &amp; NPS, analytics.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 PRODUCT -->
+<section class="slide">
+  <div class="c">
+    <div class="num">Product</div>
+    <h2>Already built - not a concept</h2>
+    <div class="grid g4">
+      <div class="stat"><div class="n">90<span>+</span></div><div class="l">working screens in the master build</div></div>
+      <div class="stat"><div class="n">9</div><div class="l">integrated modules on one database</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">complete builds, two tailored to named dealers</div></div>
+      <div class="stat"><div class="n">10,251</div><div class="l">real-shaped call records driving live KPIs</div></div>
+    </div>
+    <p class="lead" style="margin-top:34px">Contact-centre metrics are calibrated against an actual dealer report - service level 87.5%, abandonment 1.1%, first-call resolution 88.6%. A password-protected live demo runs on our own domain and opens on any device.</p>
+  </div>
+</section>
+
+<!-- 5 MARKET -->
+<section class="slide alt">
+  <div class="c">
+    <div class="num">Market</div>
+    <h2>A large market with an unserved long tail</h2>
+    <div class="grid g4">
+      <div class="stat"><div class="n">913<span>K</span></div><div class="l">new vehicles sold in Saudi Arabia, 2025</div></div>
+      <div class="stat"><div class="n">SAR 122<span>B</span></div><div class="l">market value</div></div>
+      <div class="stat"><div class="n">2,200</div><div class="l">independent showrooms - our Lite edition target</div></div>
+      <div class="stat"><div class="n">+85<span>%</span></div><div class="l">growth of Chinese brands, building systems now</div></div>
+    </div>
+    <p class="lead" style="margin-top:34px">Incumbent dealer-management vendors in the Kingdom publicly lack loyalty and complaints modules - the two our prospects ask about first.</p>
+  </div>
+</section>
+
+<!-- 6 TRACTION -->
+<section class="slide">
+  <div class="c">
+    <div class="num">Traction</div>
+    <h2>Two dealer groups in live negotiation</h2>
+    <table>
+      <tr><th>Dealer</th><th>Stage</th><th>Evidence</th></tr>
+      <tr><td><b>Najeeb Auto</b><br>Suzuki dealer</td><td>Second session requested</td><td>Demo delivered July 2026; their stated pain - leads with no tracking - is our core module.</td></tr>
+      <tr><td><b>Abdullah Hashim</b><br>Honda dealer</td><td>Contract negotiation</td><td>Tailored build delivered with priced service packages. Final objection (technical support) answered with a written support annex: SLA tiers, 60-day hypercare, monthly customisation credit.</td></tr>
+      <tr><td><b>Major conglomerate</b></td><td>Working sessions ongoing</td><td>The master build was shaped around their real reports and operations.</td></tr>
+    </table>
+    <p class="foot-note">Pre-revenue. Pricing defined: SAR 150 per operational user/month, SAR 75 read-only, plus module subscriptions and implementation from SAR 60,000.</p>
+  </div>
+</section>
+
+<!-- 7 COMPETITION -->
+<section class="slide alt">
+  <div class="c">
+    <div class="num">Competition</div>
+    <h2>Where we win</h2>
+    <table>
+      <tr><th></th><th>Global CRMs</th><th>Regional DMS</th><th>DealerPulse</th></tr>
+      <tr><td>Arabic-first interface</td><td class="cross">Translated</td><td>Partial</td><td class="tick">Native</td></tr>
+      <tr><td>Complaints with escalation</td><td class="cross">No</td><td class="cross">No</td><td class="tick">Yes</td></tr>
+      <tr><td>Loyalty module</td><td>Add-on</td><td class="cross">No</td><td class="tick">Yes</td></tr>
+      <tr><td>Contact-centre operations</td><td>Separate product</td><td class="cross">No</td><td class="tick">Built in</td></tr>
+      <tr><td>Implementation reality</td><td>Months, costly</td><td>Rip-and-replace</td><td class="tick">Complements existing systems</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 8 ASK -->
+<section class="slide dark">
+  <div class="c">
+    <div class="num">The ask</div>
+    <h2>SAR 1,000,000 for a 12-month runway</h2>
+    <div class="bar">
+      <div style="flex:30;background:rgba(255,255,255,.22)">Founder full-time 30%</div>
+      <div style="flex:43;background:rgba(255,255,255,.34)">Three technical hires 43%</div>
+      <div style="flex:4;background:rgba(255,255,255,.16)">Cloud 4%</div>
+      <div style="flex:7;background:rgba(255,255,255,.12)">Setup + GTM 7%</div>
+      <div style="flex:11;background:rgba(255,255,255,.08)">Reserve 11%</div>
+    </div>
+    <div class="grid g3" style="margin-top:34px">
+      <div class="stat"><div class="n">73<span>%</span></div><div class="l">goes to team - engineering, not overhead</div></div>
+      <div class="stat"><div class="n">Month 4</div><div class="l">hiring starts only after the first signed contract</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">target dealer contracts within 12 months</div></div>
+    </div>
+    <p class="lead" style="margin-top:30px">We are looking for a partner with sector relationships, not capital alone - the shortest path into dealer decision-makers.</p>
+  </div>
+</section>
+
+<!-- 9 CONTACT -->
+<section class="slide">
+  <div class="c" style="text-align:center">
+    <div class="num">Contact</div>
+    <h2>Monir Maraeer &middot; Founder &amp; CEO</h2>
+    <p class="lead" style="margin:18px auto 0">Automotive-sector professional in Jeddah, trained across the enterprise platforms dealers already run. Built the platform end-to-end.</p>
+    <a class="cta" href="mailto:admin@getdealerpulse.com">admin@getdealerpulse.com</a>
+    <p class="foot-note">getdealerpulse.com &middot; A live demo is available on request</p>
+  </div>
+</section>
+
+</body>
+</html>
