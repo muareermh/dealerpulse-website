@@ -36,8 +36,23 @@
   .nav-links { display:flex; gap:28px; font-size:14.5px; color:#dbe5f7; }
   .nav-links a:hover { color:#fff; }
   .nav-right { display:flex; align-items:center; gap:14px; }
-  .lang { font-size:13px; font-weight:600; color:#dbe5f7; border:1px solid rgba(255,255,255,0.3); border-radius:8px; padding:6px 13px; transition:background .15s; }
-  .lang:hover { background:rgba(255,255,255,0.12); color:#fff; }
+  .lang-switch { display:flex; align-items:stretch; border:1px solid rgba(255,255,255,0.32); border-radius:10px; overflow:hidden; font-size:13px; font-weight:600; }
+  .lang-switch a { padding:6px 14px; color:#dbe5f7; line-height:1.6; transition:background .15s, color .15s; }
+  .lang-switch a.ar { font-family:'IBM Plex Sans Arabic',sans-serif; }
+  .lang-switch a:hover { background:rgba(255,255,255,0.12); color:#fff; }
+  .lang-switch a[aria-current="true"] { background:#fff; color:var(--navy); pointer-events:none; }
+  .lang-switch .short { display:none; }
+  @media (max-width:600px) {
+    .lang-switch a { padding:6px 10px; white-space:nowrap; }
+    .lang-switch .full { display:none; }
+    .lang-switch .short { display:inline; }
+    .nav-cta { padding:9px 14px; font-size:13px; white-space:nowrap; }
+    .brand .wm { font-size:18px; }
+  }
+  @media (max-width:480px) {
+    .brand .wm { display:none; }
+    .nav { gap:10px; }
+  }
   .nav-cta { background:var(--blue6); color:#fff; padding:9px 22px; border-radius:10px; font-size:14px; font-weight:600; transition:background .15s; }
   .nav-cta:hover { background:var(--blue7); }
 
@@ -151,7 +166,10 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-right">
-      <a class="lang" href="/">العربية</a>
+      <nav class="lang-switch" aria-label="Language">
+        <a class="ar" href="/" hreflang="ar" lang="ar"><span class="full">العربية</span><span class="short">ع</span></a>
+        <a href="/en/" aria-current="true"><span class="full">English</span><span class="short">EN</span></a>
+      </nav>
       <a class="nav-cta" href="#contact">Book a live demo</a>
     </div>
   </div>
@@ -352,6 +370,7 @@
   <div class="container foot">
     <span class="wm">Dealer<span class="p">Pulse</span></span>
     <span>&copy; 2026 DealerPulse - Operational intelligence for car dealers</span>
+    <a class="ar" href="/" hreflang="ar" lang="ar" style="color:#cbd5e1;border-bottom:1px solid #475569">النسخة العربية</a>
   </div>
 </footer>
 
